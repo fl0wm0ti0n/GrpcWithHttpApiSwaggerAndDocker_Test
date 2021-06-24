@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  grpcservice_test:
+    image: ${DOCKER_REGISTRY-}grpcservicetest
+    build:
+      context: .
+      dockerfile: GrpcService_Test/Dockerfile
+
+  grpcapigw_test:
+    image: ${DOCKER_REGISTRY-}grpcapigwtest
+    build:
+      context: .
+      dockerfile: GrpcApiGw_Test/Dockerfile
+

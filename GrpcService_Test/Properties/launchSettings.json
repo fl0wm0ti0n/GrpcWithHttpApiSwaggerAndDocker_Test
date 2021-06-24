@@ -1,0 +1,27 @@
+{
+  "profiles": {
+    "GrpcService_Test": {
+      "commandName": "Project",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "applicationUrl": "https://GrpcService_Test:55001;http://GrpcService_Test:55002",
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "https://+:443;http://+:80",
+        "ASPNETCORE_HTTPS_PORT": "55002",
+        "ASPNETCORE_HTTP_PORT": "55001",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "publishAllPorts": true,
+      "httpPort": 55001,
+      "useSSL": false,
+      "sslPort": 55002
+    }
+  }
+}

@@ -1,0 +1,44 @@
+version: '3.4'
+
+services:
+  grpcservice_test:
+    hostname: grpcservice_test
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "55002"
+      ASPNETCORE_HTTP_PORT: "55001"
+      API_URL: grpcservice_test:55001
+    ports:
+      - "55001:55001"
+      - "55002:55002"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    image: grpcservice_test
+    container_name: grpcservice_test_container
+    networks:
+      - docker-network
+
+  grpcapigw_test:
+    hostname: grpcapigw_test
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "55004"
+      ASPNETCORE_HTTP_PORT: "55003"
+      API_URL: grpcapigw_test:55004
+    ports:
+      - "55003:55003"
+      - "55004:55004"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    depends_on:
+      - grpcservice_test
+    image: grpcapigw_test
+    container_name: grpcapigw_test_container
+    networks:
+      - docker-network
+
+networks:
+  docker-network:
+    external: true
